@@ -11,8 +11,7 @@ mvn clean package -DskipTests=true
 mvn test
 ```
 - Total 6 test cases, out of which
-  - 5 test cases will pass and 
-  - 1 test case fails!
+  - 6 test cases will pass 
  
 ### Deploy/Run
 ```
@@ -21,5 +20,5 @@ java -jar target/hello-demo-*.jar
 
 ### Integration Testing (Return 200 OK response)
 ```
-curl -s http://localhost:6767/hello"
+curl -s http://localhost:6767/hello
 ```
