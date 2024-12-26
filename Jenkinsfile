@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/yassine-mabrouk/jenkins-hello-world-.git'
+           
                 sh "mvn clean package -DskipTests=true"
             }
         }
