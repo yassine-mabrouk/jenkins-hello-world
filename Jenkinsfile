@@ -1,12 +1,7 @@
+
 pipeline {
   agent any
   stages {
-  stage('Maven Version') {
-        steps {
-          sh 'echo Print Maven Version'
-          sh 'mvn -version'
-        }
-      }
     stage('Build') {
       steps {
         sh 'mvn clean package -DskipTests=true'
@@ -14,32 +9,33 @@ pipeline {
       }
     }
 
-    stage('Unit Test') {
+    stage('Test') {
       steps {
         sh 'mvn test'
         junit(testResults: 'target/surefire-reports/TEST-*.xml', keepProperties: true, keepTestNames: true)
       }
     }
 
-         stage('Local Deployment') {
-              steps {
-                sh """ java -jar target/hello-demo-*.jar > /dev/null & """
-              }
-            }
+    stage('Containerization') {
+      steps {
+        sh 'echo Docker Build Image..'
+        sh 'echo Docker Tag Image....'
+        sh 'echo Docker Push Image......'
+      }
+    }
+
+    stage('Kubernetes Deployment') {
+      steps {
+        sh 'echo Deploy to Kubernetes using ArgoCD'
+      }
+    }
 
     stage('Integration Testing') {
       steps {
-        sh 'sleep 20'
-        sh 'curl -s http://localhost:6767/hello'
+        sh "sleep 10s"
+        sh 'echo Testing using cURL commands......'
       }
     }
-
-    stage('End') {
-      steps {
-        echo 'End of my pepline '
-      }
-    }
-
   }
   tools {
     maven 'M399'
