@@ -1,4 +1,4 @@
-package com.kodekloud.hello_demo;
+package com.hello_demo;
 
 
 import org.junit.jupiter.api.Test;
@@ -8,10 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import com.kodekloud.hello_demo.*;
 
 import static org.hamcrest.Matchers.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,7 +27,7 @@ public class HelloControllerTests {
     public void welcome_ok() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Hello, KodeKloud community!")));
+                .andExpect(content().string(equalTo("Hello, jenkins community!")));
     }
 
     @Test
@@ -52,7 +50,7 @@ public class HelloControllerTests {
     public void welcome_returnsCorrectLength() throws Exception {
       mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
           .andExpect(status().isOk())
-          .andExpect(content().string(hasLength(27))); 
+          .andExpect(content().string(hasLength(25)));
 
     }
 

@@ -1,4 +1,4 @@
-package com.kodekloud.hello_demo;
+package com.hello_demo;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +8,8 @@ public class HelloController {
 
     @RequestMapping("/hello")
     String hello() {
-        return "Hello, KodeKloud community!";
+        System.out.printf( "lengt :"+ String.valueOf("Hello, jenkins community!".length()));
+        return "Hello, jenkins community!";
     }
 
 }
