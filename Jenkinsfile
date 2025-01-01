@@ -29,7 +29,7 @@ pipeline {
 
     stage('Integration Testing') {
       steps {
-        sh 'sleep 10s'
+        sh 'sleep 20s'
         sh 'curl -s http://localhost:6767/hello'
       }
     }
@@ -43,11 +43,5 @@ pipeline {
   }
   tools {
     maven 'M399'
-  }
-  post {
-    always {
-      sh 'lsof -ti:6767 | xargs kill -9 || true'
-    }
-
   }
 }
