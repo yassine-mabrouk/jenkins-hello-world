@@ -29,14 +29,14 @@ pipeline {
 
     stage('Integration Testing') {
       steps {
-        sh 'sleep 20s'
+        sh 'sleep 20'
         sh 'curl -s http://localhost:6767/hello'
       }
     }
 
     stage('End') {
       steps {
-        echo 'End of my pipline '
+        echo 'End of my pepline '
       }
     }
 
