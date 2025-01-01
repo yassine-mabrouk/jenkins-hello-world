@@ -2,6 +2,17 @@
 pipeline {
   agent any
   stages {
+    stage('Maven Version') {
+          steps {
+            sh 'echo Print Maven Version'
+            sh 'mvn -version'
+          }
+        }
+    stage('Show Parameters') {
+      steps {
+        sh "echo Branch Name: ${params.BRANCH_NAME}, Sleep Time: ${params.SLEEP_TIME}, App Port: ${params.APP_PORT}"
+      }
+    }
     stage('Build') {
       steps {
         sh 'mvn clean package -DskipTests=true'
@@ -32,7 +43,7 @@ pipeline {
 
     stage('Integration Testing') {
       steps {
-        sh "sleep 10s"
+          sh "sleep ${params.SLEEP_TIME}"
         sh 'echo Testing using cURL commands......'
       }
     }
