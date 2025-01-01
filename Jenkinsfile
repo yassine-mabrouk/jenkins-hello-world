@@ -1,6 +1,12 @@
 pipeline {
   agent any
   stages {
+  stage('Maven Version') {
+        steps {
+          sh 'echo Print Maven Version'
+          sh 'mvn -version'
+        }
+      }
     stage('Build') {
       steps {
         sh 'mvn clean package -DskipTests=true'
@@ -15,25 +21,15 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
-      steps {
-        sh '''
-                    # Kill any existing Java process on port 6767
-                    lsof -ti:6767 | xargs kill -9 || true
-
-                    # Start the application
-                    java -jar target/hello-demo-*.jar &
-
-                    # Wait for application to start (adjust sleep time as needed)
-                    sleep 30
-
-
-                '''
-      }
-    }
+         stage('Local Deployment') {
+              steps {
+                sh """ java -jar target/hello-demo-*.jar > /dev/null & """
+              }
+            }
 
     stage('Integration Testing') {
       steps {
+        sh 'sleep 10s'
         sh 'curl -s http://localhost:6767/hello'
       }
     }
